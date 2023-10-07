@@ -1,0 +1,167 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 11px;
+}
+
+html {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body {
+    width: 100%;
+}
+input{
+    border: 1px solid black;
+    border-radius: 3px;
+    line-height: 35px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Gowun Dodum', sans-serif;
+    color:white;
+    background-color: rgba(69,75,82);
+    
+}
+::placeholder{
+	color:white;
+}
+
+.wrapper {
+    padding: 30px;
+}
+.outer {
+	width:40%;
+	border: 1px solid white;
+    border-radius:10px;
+}
+
+div {
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+.title {
+    text-align: center;
+    font-weight: 700;
+}
+
+.id input {
+	margin-left : 20px;
+    width: 220px;
+    margin-right : 10px;
+}
+.name input {
+    width: 340px;
+}
+.name {
+	margin-top : -20px;
+	width:100%;
+}
+.password input {
+    width: 340px;
+}
+.id {
+	width:60%;
+	display:inline-block;
+	margin-bottom :-20px;
+}
+.passwordCheck input {
+    width: 340px;
+}
+.addr{
+	float:center;
+}
+.addr2{
+	float:center;
+}
+.addr2 #address{
+	width: 198px;
+}
+.addr #detailAddress{
+	width: 265px;
+}
+.addr2 #extraAddress{
+	width: 140px;
+}
+
+.phone {
+    justify-content: space-between;
+    line-height: 35px;
+    width:100%;
+}
+.phone input{
+	width:350px;
+	float:center;
+}
+
+.auth {
+	width:100%;
+    float:center;
+    justify-content: space-between;
+    display:block;
+}
+.timer {
+	width:100%;
+    justify-content: space-between;
+    display:inline-block;
+}
+
+.auth input {
+	margin-left:30px;
+    font-weight: 700;
+    font-size: 15px;
+    width:150px;
+    display:inline;
+    padding:0px;
+}
+
+.auth button {
+	margin-left : 10px;
+    width: 100px;
+    display:inline;
+}
+.timer div {
+    width: 200px;
+    font-weight: 700;
+    font-size: 15px;
+    float:center;
+    display:inline;
+    margin-right:10px;
+}
+.timer input {
+	margin-right : 10px;
+	padding : 0px;
+	width:150px;
+	display:inline;
+	text-align:center;
+}
+
+.timer button {
+	margin-right:20px;
+    width: 100px;
+    display:inline;
+}
+
+
+.signUp button {
+    width: 350px;
+    cursor:pointer;
+}
+
+button{
+    cursor: pointer;
+    height: 30px;
+}
+
+.error{
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.dotory.board.mapper.ReplyMapper">
+	
+	<select id="getReply" parameterType="int">
+		SELECT reply_id
+		     , reply
+		     , reply_update
+		     , reply_date
+		     , member_id
+		     , board_id
+		     , parent_num
+		     , (level) as reply_level
+	      FROM dt_reply
+	     WHERE board_id = #{boardId}
+	     START WITH parent_num = 0
+	   CONNECT BY PRIOR reply_id = parent_num
+		 ORDER SIBLINGS BY reply_id desc
+	</select>
+	
+	<delete id ="replyDelete" >
+		delete 
+		  from dt_reply
+		 where reply_id = #{replyId}
+	</delete>
+	
+	<!-- 댓글/ 대댓글 삭제 -->
+	<delete id="replydDel" parameterType="int">
+		DELETE FROM dt_reply 
+             WHERE reply_id in (
+	                      SELECT reply_id FROM dt_reply
+	                      START WITH reply_id = #{replyId}
+	                      CONNECT BY PRIOR  reply_id = parent_num
+              )	
+	</delete>
+	
+	<!-- 댓글 등록 -->
+	<insert id="replyAdd" parameterType="replyVO">
+		<selectKey keyProperty="replyId,replyDate" resultType="replyVO" order="BEFORE">
+			SELECT NVL( MAX(reply_id) , 0) + 1 as reply_id
+			     , sysdate as reply_date
+			  FROM dt_reply
+		</selectKey>
+			INSERT  
+			  INTO dt_reply (reply_id,reply,board_id,member_id, 
+			  <if test="parentNum != null">
+				  parent_num
+			  </if>
+			  )
+			VALUES (#{replyId}, #{reply}, #{boardId},#{memberId}, 
+			<if test="parentNum != null">
+				#{parentNum}
+			</if>
+			)
+	</insert>
+	
+	
+	<update id="replyUpdate" parameterType="replyVO">
+		UPDATE dt_reply
+		   SET reply = #{reply}
+		     , reply_update = sysdate
+		 WHERE reply_id = #{replyId}
+	</update>	
+</mapper>
